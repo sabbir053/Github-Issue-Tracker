@@ -205,6 +205,3 @@ async function modalDetails(cardId) {
     document.getElementById("modal_details").showModal();
     hideLoader()
 }
-
-
-
