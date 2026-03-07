@@ -114,7 +114,7 @@ function renderIssues(issues) {
 
             <div>
                 <p class="text-gray-500">#1 by ${issue.author}</p>
-                <p class="text-gray-500">${issue.updatedAt}</p>
+                <p class="text-gray-500">${issue.createdAt}</p>
             </div>
 
         </div>
@@ -176,7 +176,6 @@ async function modalDetails(cardId) {
     const issue = data.data;
 
     detailsBox.innerHTML = `
-
     <h2 class="text-2xl font-bold">${issue.title}</h2>
 
     <div class="flex gap-3 py-3 items-center">
@@ -188,17 +187,14 @@ async function modalDetails(cardId) {
     <p class="text-lg text-gray-500">${issue.description}</p>
 
     <div class="bg-gray-100 grid grid-cols-2 rounded-md p-3 mt-3">
-
         <div>
             <p class="text-gray-400">Assignee</p>
             <p class="font-bold">${issue.assignee}</p>
         </div>
-
         <div>
             <p class="text-gray-400">Priority</p>
             <button class="btn btn-warning">${issue.priority}</button>
         </div>
-
     </div>
     `;
 
