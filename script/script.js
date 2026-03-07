@@ -4,7 +4,6 @@ const buttons = document.querySelectorAll(".filter-btn");
 let allIssuesData = [];
 
 // loader show hide 
-
 function showLoader() {
     document.getElementById("loader").classList.remove("hidden");
 }
@@ -13,9 +12,7 @@ function hideLoader() {
     document.getElementById("loader").classList.add("hidden");
 }
 
-// =====================
-// Load Issues
-// =====================
+// Load Issue Here 
 async function loadIssues() {
     showLoader()
 
@@ -32,10 +29,7 @@ async function loadIssues() {
 loadIssues();
 showLoader()
 
-
-// =====================
-// Render Issues
-// =====================
+// Issue Rendering Here 
 function renderIssues(issues) {
     showLoader()
 
@@ -130,19 +124,53 @@ function renderIssues(issues) {
 
     });
     hideLoader()
-
 }
 
+// Filter Buttons
+buttons.forEach(button => {
 
-// =====================
-// Modal Details
-// =====================
-async function modalDetails(id) {
+    button.addEventListener("click", async function () {
+
+        buttons.forEach(btn => btn.classList.remove("bg-primary", "text-white"));
+        this.classList.add("bg-primary", "text-white");
+        const filter = this.dataset.filter;
+        // console.log(filter)
+        showLoader();
+        allCards.innerHTML = "";
+        let filtered = (filter === "all") ? allIssuesData : allIssuesData.filter(issue => issue.status === filter);
+
+        renderIssues(filtered);
+        hideLoader();
+    });
+});
+
+
+// Search Inputs
+document.getElementById("btn-search").addEventListener("keyup", function () {
+    showLoader()
+
+    const value = this.value.toLowerCase();
+    const searchValue = value.trim()
+
+    const filteredIssues = allIssuesData.filter(issue =>
+        issue.title.toLowerCase().includes(searchValue)
+    );
+
+    console.log(filteredIssues)
+
+    renderIssues(filteredIssues);
+    hideLoader()
+
+});
+
+
+// Modal Details Here
+async function modalDetails(cardId) {
     showLoader()
 
     const detailsBox = document.getElementById("details-container");
 
-    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${cardId}`);
     const data = await res.json();
 
     const issue = data.data;
@@ -179,53 +207,4 @@ async function modalDetails(id) {
 }
 
 
-// =====================
-// Filter Buttons
-// =====================
-buttons.forEach(button => {
 
-    button.addEventListener("click", async function () {
-
-        buttons.forEach(btn => btn.classList.remove("bg-primary", "text-white"));
-        this.classList.add("bg-primary", "text-white");
-
-        const filter = this.dataset.filter;
-
-        showLoader();
-        allCards.innerHTML = "";
-
-        let filtered = (filter === "all") ? allIssuesData : allIssuesData.filter(issue => issue.status === filter);
-
-        renderIssues(filtered);
-
-        hideLoader();
-
-    });
-
-});
-
-
-
-
-// =====================
-// Search Inputs
-// =====================
-
-
-document.getElementById("btn-search").addEventListener("keyup", function () {
-    showLoader()
-
-    const value = this.value.toLowerCase();
-    const searchValue = value.trim()
-
-    const filteredIssues = allIssuesData.filter(issue =>
-        issue.title.toLowerCase().includes(searchValue) ||
-        issue.description.toLowerCase().includes(searchValue)
-    );
-
-    console.log(filteredIssues)
-
-    renderIssues(filteredIssues);
-    hideLoader()
-
-});
