@@ -15,14 +15,10 @@ function hideLoader() {
 // Load Issue Here 
 async function loadIssues() {
     showLoader()
-
     const res = await fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues");
     const data = await res.json();
-
     allIssuesData = data.data;
-
     renderIssues(allIssuesData);
-
     hideLoader()
 }
 
@@ -32,15 +28,10 @@ showLoader()
 // Issue Rendering Here 
 function renderIssues(issues) {
     showLoader()
-
     allCards.innerHTML = "";
-
     document.getElementById("issue-count").innerText = `${issues.length} Issues`;
-
     issues.forEach(issue => {
-
         const div = document.createElement("div");
-
         div.innerHTML = `
         <div onclick="modalDetails(${issue.id})" 
         class="card bg-white p-3 space-y-3 shadow-sm 
@@ -67,9 +58,7 @@ function renderIssues(issues) {
             </div>
 
             <h2 class="text-2xl font-bold">${issue.title}</h2>
-
             <p class="text-gray-500">${issue.description}</p>
-
             <div class="flex gap-3 flex-wrap">
 
                 ${issue.labels.map(label => {
@@ -145,28 +134,23 @@ buttons.forEach(button => {
 });
 
 
-// Search Inputs
-document.getElementById("btn-search").addEventListener("keyup", function () {
-    showLoader()
+// search function here
+document.getElementById("btn-search").addEventListener("click", function () {
+    let input = document.getElementById('input-value')
+    const searchValue = input.value.trim().toLowerCase();
 
-    const value = this.value.toLowerCase();
-    const searchValue = value.trim()
-
-    const filteredIssues = allIssuesData.filter(issue =>
-        issue.title.toLowerCase().includes(searchValue)
-    );
-
-    console.log(filteredIssues)
-
-    renderIssues(filteredIssues);
-    hideLoader()
-
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            renderIssues(data.data);
+        })
 });
+
 
 
 // Modal Details Here
 async function modalDetails(cardId) {
-    showLoader()
 
     const detailsBox = document.getElementById("details-container");
 
@@ -199,5 +183,5 @@ async function modalDetails(cardId) {
     `;
 
     document.getElementById("modal_details").showModal();
-    hideLoader()
+
 }
