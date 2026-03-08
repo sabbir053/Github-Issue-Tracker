@@ -35,13 +35,3 @@
               regular strings.
 
 ---
-
-
-## 📤 What to submit
-
-- **GitHub Repository Link:**
-- **Live Site Link:**
-
----
-
-
