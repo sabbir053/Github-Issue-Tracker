@@ -24,8 +24,9 @@
      - 4️⃣ What is an arrow function?
 
           ANS:
-              An arrow function is a shorter and more concise way to write functions in JavaScript. Use the => syntax instead of 
-               the function keyword.
+              An arrow function is a shorter and more concise way to write functions in JavaScript. Use the => syntax instead of
+              the function keyword.
+               
 
     - 5️⃣ What are template literals?
 
