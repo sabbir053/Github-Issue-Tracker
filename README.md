@@ -22,13 +22,16 @@
                         to perform a each element.
 
      - 4️⃣ What is an arrow function?
-     
-          ANS:  An arrow function is a shorter and more concise way to write functions in JavaScript. Use the => syntax instead of 
-                the function keyword.
+
+          ANS:
+              An arrow function is a shorter and more concise way to write functions in JavaScript. Use the => syntax instead of 
+               the function keyword.
 
     - 5️⃣ What are template literals?
-          ANS:  Template literals are a way to create strings that are more flexible and readable than
-                regular strings.
+
+          ANS:
+              Template literals are a way to create strings that are more flexible and readable than
+              regular strings.
 
 ---
 
