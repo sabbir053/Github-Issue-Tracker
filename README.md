@@ -1,11 +1,10 @@
 - Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot. 
     - 1️⃣ What is the difference between var, let, and const?
+
           ANS:
               var:  it's can declair and update in the same scop. Its like flexible behaviour.
-
               let:  only works inside the block. This variable declared with let. it's can be updated, but it cannot be declared 
                     again in the same scope.
-
               const:  value could not change after assigned...  also it's can not be reassigned --> Safer by accidental changes.
 
     - 2️⃣ What is the spread operator (...)?
