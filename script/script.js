@@ -34,7 +34,7 @@ function renderIssues(issues) {
         const div = document.createElement("div");
         div.innerHTML = `
         <div onclick="modalDetails(${issue.id})" 
-        class="card bg-white p-3 space-y-3 shadow-sm 
+        class="card h-full bg-white p-3 space-y-3 shadow-sm 
         ${issue.priority == "high" || issue.priority == "medium"
                 ? "border-t-3 border-green-500"
                 : "border-t-3 border-purple-500"}">
@@ -171,11 +171,11 @@ async function modalDetails(cardId) {
     <p class="text-lg text-gray-500">${issue.description}</p>
 
     <div class="bg-gray-100 grid grid-cols-2 rounded-md p-3 mt-3">
-        <div>
+        <div class="gap-2">
             <p class="text-gray-400">Assignee</p>
             <p class="font-bold">${issue.assignee}</p>
         </div>
-        <div>
+        <div class="space-y-2">
             <p class="text-gray-400">Priority</p>
             <button class="btn btn-warning">${issue.priority}</button>
         </div>
